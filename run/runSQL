@@ -14,9 +14,12 @@ if [ "${1}" == "" ] || [ "${2}" == "" ]; then
 fi
 BASEDIR=$(dirname "$0")
 
+
 MY_CLASSPATH=".:${BASEDIR}/../BenchmarkSQL.jar:${BASEDIR}/../lib/*"
+echo "MY_CLASSPATH ${MY_CLASSPATH}"
 
 MY_PROPERTIES="-Dprop=${1}"
 MY_FILE="-DcommandFile=${2}"
 
 java -cp "${MY_CLASSPATH}" "${MY_PROPERTIES}" "${MY_FILE}" com.github.benchmarksql.ExecJDBC
+echo "java -cp "${MY_CLASSPATH}" "${MY_PROPERTIES}" "${MY_FILE}" com.github.benchmarksql.ExecJDBC"
