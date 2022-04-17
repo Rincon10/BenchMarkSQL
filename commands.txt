@@ -1,5 +1,0 @@
-## Command line to execute benchmark first step
-
-java -cp "target/classes/;target/dependency/*;target/lib/*" -Dprop=run/mysql/mysql.properties -DcommandFile=run/mysql/sqlTableCreates.sql com.github.benchmarksql.ExecJDBC
-
-## d
