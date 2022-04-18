@@ -156,7 +156,17 @@ To run the following command, indicating the location of the files.
 
 _Windows:_
 
-    runLoader mysql\mysql.properties numWarehouses 1 fileLocation c:\tmp\csv   
+    runLoader mysql\mysql.properties numWarehouses 1 fileLocation c:\tmp\csv
+    
+If the last command doesn't work, go back to the root project and use the following command:    
+```
+java -cp "target/classes/;target/dependency/*;target/lib/*;target/run/mysql/*" -Dprop=run/mysql/mysql.properties com.github.benchmarksql.LoadData
+\ numWarehouses 1 fileLocation tmp\csv
+```
+
+<br/> 
+<img src="./resources/03-generating-the-load-data-out-to-CSV-file.png" alt="03-generating-the-load-data-out-to-CSV-file" />
+<br/>   
 
 _Linux:_
 
@@ -178,6 +188,16 @@ _Windows:_
 
     runSQL mysql\mysql.properties mysql\sqlTableTruncates.sql
 
+If the last command doesn't work, go back to the root project and use the following command: 
+
+```
+java -cp "target/classes/;target/dependency/*;target/lib/*" -Dprop=run/mysql/mysql.properties -DcommandFile=run/mysql/sqlTableTruncates.sql com.github.benchmarksql.ExecJDBC
+```
+
+<br/>
+<img src="./resources/04-sqlTableTruncates.png" alt="04-sqlTableTruncates" />
+<br/>
+
 _Linux:_
 
     ./runSQL mysql/mysql.properties mysql/sqlTableTruncates.sql
@@ -189,6 +209,16 @@ _Windows:_
 
     runSQL mysql\mysql.properties mysql\sqlIndexCreates.sql
 
+If the last command doesn't work, go back to the root project and use the following command: 
+
+```
+java -cp "target/classes/;target/dependency/*;target/lib/*" -Dprop=run/mysql/mysql.properties -DcommandFile=run/mysql/sqlIndexCreates.sql com.github.benchmarksql.ExecJDBC
+```
+
+<br/>
+<img src="./resources/05-sqlIndexCreates.png" alt="05-sqlIndexCreates" />
+<br/>
+
 _Linux:_
 
     ./runSQL mysql/mysql.properties mysql/sqlIndexCreates.sql
@@ -199,6 +229,16 @@ indexes before this:
 _Windows:_
 
     runSQL mysql\mysql.properties mysql\sqlIndexDrops.sql
+
+If the last command doesn't work, go back to the root project and use the following command: 
+
+```
+java -cp "target/classes/;target/dependency/*;target/lib/*" -Dprop=run/mysql/mysql.properties -DcommandFile=run/mysql/sqlIndexDrops.sql com.github.benchmarksql.ExecJDBC
+```
+
+<br/>
+<img src="./resources/06-sqlIndexDrops.png" alt="06-sqlIndexDrops" />
+<br/>
 
 _Linux:_
 
@@ -213,14 +253,21 @@ based on the parameters set in `mysql.properties`.
 _Windows:_
 
     runBenchmark mysql\mysql.properties
+    
+If the last command doesn't work, go back to the root project and use the following command: 
+
+ 
+```
+java -Xmx2g -Xms1g -cp "target/classes/;target/dependency/*;target/lib/*" -Dprop=run/mysql/mysql.properties com.github.benchmarksql.jtpcc.jTPCC
+```
+
+<br/>
+<img src="./resources/07-memoryUsage.png" alt="07-memoryUsage" />
+<br/>
 
 _Linux:_
 
     ./runBenchmark mysql/mysql.properties
-
-# Scale the benchmark configuration
-
-ToDo
 
 # Clean the environment
 
@@ -229,6 +276,16 @@ To clean the database, you can run.
 _Windows:_
 
     runSQL mysql\mysql.properties mysql\sqlTableDrops.sql
+
+If the last command doesn't work, go back to the root project and use the following command: 
+
+```
+java -cp "target/classes/;target/dependency/*;target/lib/*" -Dprop=run/mysql/mysql.properties -DcommandFile=run/mysql/sqlTableDrops.sql com.github.benchmarksql.ExecJDBC
+```
+
+<br/>
+<img src="./resources/08-sqlDrops.png" alt="sqlTableDrops" />
+<br/>
 
 _Linux:_
 
