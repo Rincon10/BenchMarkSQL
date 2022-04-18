@@ -50,7 +50,7 @@ public class Materia implements Serializable {
     @Override
     public final String toString() {
         final StringBuffer ret = new StringBuffer("");
-        ret.append("\n***************** Estudiante ********************");
+        ret.append("\n***************** Materia ********************");
         ret.append("\n*           m_sigla = " + this.getM_sigla());
         ret.append("\n*         m_nombre = " + this.getM_nombre());
         ret.append("\n*         m_creditos = " + this.getM_creditos());
