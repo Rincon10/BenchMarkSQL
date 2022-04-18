@@ -1,0 +1,9 @@
+
+
+## Creating Tables
+
+java -cp "target/classes/;target/dependency/*;target/lib/*" -Dprop=run/mysql/mysql.properties -DcommandFile=sgbd/01-CreateTables.sql com.github.benchmarksql.ExecJDBC
+
+## Constraints
+
+java -cp "target/classes/;target/dependency/*;target/lib/*" -Dprop=run/mysql/mysql.properties -DcommandFile=sgbd/02-CreateConstraints.sql com.github.benchmarksql.ExecJDBC
