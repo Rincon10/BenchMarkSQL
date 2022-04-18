@@ -4,6 +4,10 @@ bin/
 .settings
 .DS_Store
 /target/
+
+*.csv
+/tmp/
+tmp/
 HELP.md
 out/
 /target/
