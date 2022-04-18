@@ -14,7 +14,7 @@ CREATE TABLE benchmarksql.grupos(
 	g_numero	integer NOT NULL,
 ) engine=innodb;
 
-CREATE TABLE benchamrksql.estudiantes(
+CREATE TABLE benchmarksql.estudiantes(
 	e_id		integer NOT NULL,
 	e_nombre	varchar(25) NOT NULL,
 	e_apellidos	varchar(25) NOT NULL,
