@@ -55,6 +55,9 @@ As the user `root`, create the `benchmarksql` user with correct permissions.
 	mysql> GRANT ALL ON *.* TO 'benchmarksql'@'%';
 	mysql> FLUSH PRIVILEGES;
 
+
+<img src="./resources/00-data-base-user.png" alt="data-base-user" />
+
 # Adjust the BenchmarkSQL configuration file
 
 A sample JDBC connection property files is provided for MySQL called
@@ -111,6 +114,9 @@ If the last command doesn't work, go back to the root project and use the follow
 java -cp "target/classes/;target/dependency/*;target/lib/*" -Dprop=run/mysql/mysql.properties -DcommandFile=run/mysql/sqlTableCreates.sql com.github.benchmarksql.ExecJDBC
 ```
 
+<br/>
+<img src="./resources/01-creating-the-base-tables.png" alt="creating-the-base-tables" />
+<br/>
 
 _Linux:_
 
@@ -130,9 +136,10 @@ _Windows:_
 If the last command doesn't work, go back to the root project and use the following command:    
 ```
 java -cp "target/classes/;target/dependency/*;target/lib/*;target/run/mysql/*" -Dprop=run/mysql/mysql.properties com.github.benchmarksql.LoadData \ numWarehouses 1
-```
-    
-
+```   
+<br/> 
+<img src="./resources/02-loading-all-default-data.png" alt="loading-all-default-data" />
+<br/>
 
 _Linux:_
 
