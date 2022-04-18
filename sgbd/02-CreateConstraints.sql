@@ -30,3 +30,15 @@ ALTER TABLE benchmarksql.grupoestudiante ADD CONSTRAINT fk_grupoestudiante_estud
 	
 ALTER TABLE benchmarksql.grupoestudiante ADD CONSTRAINT fk_grupoestudiante_grupo
 	FOREIGN KEY (ge_g_id) REFERENCES benchmarksql.grupos(g_id);
+
+CREATE INDEX ndx_materias_nombre
+	ON benchmarksql.materias (m_sigla, m_nombre, m_creditos);
+	
+CREATE INDEX ndx_grupos_numero
+	ON benchmarksql.grupos(g_id, g_numero, g_m_id);
+	
+CREATE INDEX ndx_salongrupo_relation
+	ON benchmarksql.salongrupo(sg_s_id, sg_g_id);
+	
+CREATE INDEX ndx_grupoestudiante_relation
+	ON benchmarksql.grupoestudiante(ge_e_id, ge_g_id);
