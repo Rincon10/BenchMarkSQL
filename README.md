@@ -292,3 +292,49 @@ _Linux:_
     ./runSQL mysql/mysql.properties mysql/sqlTableDrops.sql
 
 
+```
+[4/11/2021 5:05 PM] ANDRES GOMEZ CASANOVA
+    SGBD_M 2021-1 Estas son una notas sobre cómo haremos la prueba de ejecución el próximo sábado
+
+
+
+# Entorno de ejecución
+# 5 warehouses 50 terminals
+# Poner dos archivos de propiedades de configuración en un directorio antes de donde tengan los fuentes de BenchmarkSQL.
+# Los archivos son:
+# * myRDBMS-noOptimization.properties contiene la configuración de acceso a la db, con el entorno de ejecución.
+# * myRDBMS-withOptimization.properties contiene la configuración de acceso a la db, con el entorno de ejecución. Puede incluir parámetros de configuración especiales en la URL de conexión.
+# NOTA: reemplazar myRDBMS con el nombre del motor que estén trabajando.
+#
+# Además de los archivos de configuración, podrán tener archivos con extensión .sql de creación de tablas e índices, donde pueden incluir algunos elementos del afinamiento que ustedes hayan incorporado.
+#
+# Otros archivos que utilicen para ajustar la configuración de la base de datos de acuerdo al afinamiento que hayan realizado.
+# A continuación cómo se pueden usar estos archivos a partir de los fuentes.
+# Generación de jar.
+mvn 
+# Ejecución sin optimización (ni índices): 2 veces por 5 minutos c/u.
+cp ../myRDBMS-noOptimization.properties target/run/myRDBMS/myRDBMS.properties
+cd target/run 
+./runSQL myRDBMS/myRDBMS.properties myRDBMS/sqlTableDrops.sql 
+./runSQL myRDBMS/myRDBMS.properties myRDBMS/sqlTableCreates.sql 
+./runLoader myRDBMS/myRDBMS.properties numWarehouses 5 
+./runBenchmark myRDBMS/myRDBMS.properties 
+cd ../.. 
+# Ejecución con optimización : 3 veces por 20 minutos c/u.
+cp ../myRDBMS-withOptimization.properties target/run/myRDBMS/myRDBMS.properties
+cp ../*.sql target/run/myRDBMS/
+cd target/run 
+./runSQL myRDBMS/myRDBMS.properties myRDBMS/sqlTableDrops.sql 
+./runSQL myRDBMS/myRDBMS.properties myRDBMS/sqlTableCreates.sql 
+./runLoader myRDBMS/myRDBMS.properties numWarehouses 5 
+./runSQL myRDBMS/myRDBMS.properties myRDBMS/sqlIndexCreates.sql 
+# NOTA: Ejecución manual de otros elementos de configuración como parte del afinamiento.
+./runBenchmark myRDBMS/myRDBMS.properties 
+cd ../.. ;
+# Nota: Si es en Windows, cambiar:
+# * Los comandos “cp” por “copy”.
+# * / por \ (Slash por backslash).
+# * Quitar ./ para ejecutar.
+
+<https://teams.microsoft.com/l/message/19:d86509f313a14d08add4cfa949188300@thread.tacv2/1618178751225?tenantId=50640584-2a40-4216-a84b-9b3ee0f3f6cf&amp;groupId=fe66f952-f8d6-4426-9d58-af81794f306f&amp;parentMessageId=1618178751225&amp;teamName=SGBD_M 2022-1&amp;channelName=Benchmark SQL&amp;createdTime=1618178751225>
+```
