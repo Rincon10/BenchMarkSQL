@@ -338,3 +338,16 @@ cd ../.. ;
 
 <https://teams.microsoft.com/l/message/19:d86509f313a14d08add4cfa949188300@thread.tacv2/1618178751225?tenantId=50640584-2a40-4216-a84b-9b3ee0f3f6cf&amp;groupId=fe66f952-f8d6-4426-9d58-af81794f306f&amp;parentMessageId=1618178751225&amp;teamName=SGBD_M 2022-1&amp;channelName=Benchmark SQL&amp;createdTime=1618178751225>
 ```
+
+
+```
+copy mysql-noOptimization.properties target\run\mysql\mysql.properties
+cd target\run
+runSQL mysql\mysql.properties mysql\sqlTableDrops.sql
+runSQL mysql\mysql.properties mysql\sqlTableCreates.sql
+cd ../..
+java -cp "target/classes/;target/dependency/*;target/lib/*;target/run/mysql/*" -Dprop=run/mysql/mysql.properties com.github.benchmarksql.LoadData \ numWarehouses 1
+cd target\run
+runSQL mysql\mysql.properties mysql\sqlIndexCreates.sql
+runBenchmark mysql\mysql.properties
+```
